@@ -1,0 +1,31 @@
+#ifndef BIBLIO_h
+#define BIBLIO_h
+#include<stdio.h>
+#include <stdlib.h>
+#define MATH_PI 3.14159265358979323846
+#include <math.h>
+typedef struct {
+    int deg;        
+    float *Tab;  
+} polynome;
+
+
+void Affichage_polynome(polynome *poly) ;
+void Saisir_Polynome(polynome *p ) ;
+void Creation_Polynome(polynome *p ,int deg) ;
+float power(float x, int n) ;
+double Pm(double x, polynome* poly);
+void calcul_polynome(int n, double * ech_x, double * ech_poly, polynome* poly);
+void echantillon_regulier(double min, double max, int n, double * echantillon);
+void affichage_graphique(char* nom_fichier) ;
+void sauvegarde_fichier(char *nom_fichier, double *abscisses, double *ordonnees, int n);
+
+double calcul_lgx(int n,int indice, double* x, double x_x);
+
+double polynome_lagrange(polynome *p, double *lg, double xx);
+ 
+void calcul_polynome_lagrange(polynome *p, double *sortie, double *xl,double *x,int m, int n);
+
+void echantillon_tchebychef(double min, double max, int n, double * echantillon);
+
+#endif
