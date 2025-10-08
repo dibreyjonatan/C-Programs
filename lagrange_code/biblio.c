@@ -120,27 +120,3 @@ void calcul_polynome_lagrange(polynome *p, double *sortie, double *xl,double *x,
  }
 
 }
-void lacet(double *lg,int n,double *x){
-
-    for(int i=0; i<n ; i++)
-      lg[i]=calcul_lgx(n,i,x,x[i]) ;
-}
-/*
-//x_x represent x dans la formule de langrange
-double polynome_lagrange(int n,int indice, double* x, double x_x){
-  double num=1, den=1 ;
-for (int j=0; j<n; j++){
-if(indice != j ) {
-   num*=(x_x - x[j]) ;
-   den*=(x[indice] - x[j]) ;
-}
-}
-return num/den;
-}
-void calcul_polynome_lagrange(int n,double *x, double *sortie, double *b){
-  for(int i=0; i<n ;i++)
-    sortie[i]=0 ;
-for( int i=0 ;i<n ; i++){
-  sortie[i]+=b[i]*polynome_lagrange(n,i,x,x[i]) ;
-}
-*/
