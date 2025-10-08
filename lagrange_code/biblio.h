@@ -28,9 +28,9 @@ void calcul_polynome_lagrange(int n,double *x, double *sortie, double *b) ;
 double calcul_lgx(int n,int indice, double* x, double x_x);
 void lacet(double *lg,int n,double *x);
 
-double polynome_lagrange(polynome *p,int n, double *lg, double xx);
+double polynome_lagrange(polynome *p, double *lg, double xx);
  
-void calcul_polynome_lagrange(polynome *p, double *sortie, double *x, int n) ;
+void calcul_polynome_lagrange(polynome *p, double *sortie, double *xl,double *x,int m, int n);
 
 
 #endif

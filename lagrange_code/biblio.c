@@ -31,7 +31,7 @@ float power(float x, int n) {
 double Pm(double x,polynome *poly){
   double val=0 ;
  for(int i=poly->deg; i>=0 ; i-- ){
-    val+=poly->Tab[i]*power(x,i) ;  // coef*x^i 
+    val+=poly->Tab[i]*power(x,i) ; 
  }
  return val ;
  }
@@ -92,10 +92,10 @@ FILE *gp = popen("gnuplot -persist", "w");
 }
 }
 
-double calcul_lgx(int n,int indice, double* x, double x_x){
+double calcul_lgx(int m,int indice, double* x, double x_x){
   double num=1, den=1 ;
-  
-for (int j=0; j<n; j++){
+
+for (int j=0; j<m+1; j++){  //m+1 à cause du nombre de points 
 if(indice != j ) {
    num*=(x_x - x[j]) ;
    den*=(x[indice] - x[j]) ;
@@ -105,28 +105,26 @@ if(indice != j ) {
  return (num/den) ;
 
 }
+
+double polynome_lagrange(polynome *p, double *xl, double xx){
+ double val=0 ;
+  for(int i=p->deg; i>=0 ; i-- ){
+    val+=p->Tab[i]*calcul_lgx(p->deg,i,xl,xx) ;  
+ }
+ return val;
+}
+void calcul_polynome_lagrange(polynome *p, double *sortie, double *xl,double *x,int m, int n){
+
+  for (int i=0 ; i< n ; i++ ){
+   sortie[i]=polynome_lagrange(p,xl,x[i]) ;
+ }
+
+}
 void lacet(double *lg,int n,double *x){
 
     for(int i=0; i<n ; i++)
       lg[i]=calcul_lgx(n,i,x,x[i]) ;
 }
-double polynome_lagrange(polynome *p,int n, double *x, double xx){
- double val=0 ;
-  for(int i=p->deg; i>=0 ; i-- ){
-    val+=p->Tab[i]*calcul_lgx(n,i,x,xx) ;  
- }
- return val;
-}
-void calcul_polynome_lagrange(polynome *p, double *sortie, double *x, int n){
-
-  for (int i=0 ; i< n ; i++ ){
-   double val=0 ;
- for(int j=p->deg; j>=0; j-- ){
-   sortie[i]=polynome_lagrange(p,n,x,x[i]) ;
- }
-}
-}
-
 /*
 //x_x represent x dans la formule de langrange
 double polynome_lagrange(int n,int indice, double* x, double x_x){

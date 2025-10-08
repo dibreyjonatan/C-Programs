@@ -1,17 +1,37 @@
 #include "biblio.h"
 
 int main(void){
-   polynome poly,inter ;
+   polynome poly ;
    int degree ;
    int n = 1000;
+   int m=4;
     double min = -1.0, max = 1.0;
-    char nom_fich[]="texte.txt" ;
-    char lagr[]="test.txt" ;
+
+    char lagr[]="data_m4.txt" ;
+    Creation_Polynome(&poly,m);
     double *x = malloc(n * sizeof(double));
-    double *y = malloc(n * sizeof(double));
+    double *xl = malloc((m+1)* sizeof(double));
     double *sortie=malloc(n*sizeof(double)) ;
-   echantillon_regulier(min, max, n, x);  
-   printf("entrez le degree du polynome \n" ) ;
+   echantillon_regulier(min, max, m+1, xl);  
+   echantillon_regulier(min, max, n, x);
+   for(int i=m; i>0; i--){
+      poly.Tab[i]=1/(1+25*xl[i]*xl[i]);
+      printf("x=%lf y=%lf\n",xl[i],poly.Tab[i]);
+   }
+   printf("%lf",polynome_lagrange(&poly,xl,0));
+   calcul_polynome_lagrange(&poly,sortie,xl,x,m,n);
+
+   /* //to fetch the original function
+    
+   for(int i=0; i<n; i++){
+      sortie[i]=1/(1+25*x[i]*x[i]);
+    //  printf("x=%lf y=%lf\n",xl[i],poly.Tab[i]);
+   }*/
+   sauvegarde_fichier(lagr, x, sortie, n);
+   affichage_graphique(lagr) ;
+   //on calcul le noeud de lagrange pour m donnée
+
+   /*printf("entrez le degree du polynome \n" ) ;
    scanf("%d",&degree) ;
    Creation_Polynome(&poly,degree);
    Saisir_Polynome(&poly ) ;
@@ -30,15 +50,15 @@ int main(void){
   
     for(int i=0; i< 3 ; i++ )
       printf("lg[%d]=%lf\n",i,lg[i]) ;
-
+*/
    /*calcul_polynome_lagrange(n,x,sortie,y);
    sauvegarde_fichier(lagr, x, sortie, n);
    affichage_graphique(lagr) ;*/
 
-   free(lg);
+   
    free(sortie) ;
    free(x);
-    free(y);
+    //free(y);
    free(poly.Tab) ;
 return 0 ;
 }
