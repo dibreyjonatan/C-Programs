@@ -1,3 +1,9 @@
 #Ignore all builds
 
 */build/*
+
+#ignore all .o files 
+
+*.o
+
+
