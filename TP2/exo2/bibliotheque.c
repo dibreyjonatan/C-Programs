@@ -40,7 +40,7 @@ polynome Calcul_derive(polynome p, polynome q ) {
      q.deg=p.deg-1 ;
      if(p.deg==0 && p.Tab[0]==0 ) {  //cas où p(x)=0, on ne peut pas faire de derivé 
      printf("on ne peut pas faire de derivation \n" ) ;
-     return q ; 
+     return q; 
      }
      if(q.deg==-1 ) {  // dans le cas où on a p(x)=c où c different de 0, alors p'=0
          q.deg=0 ;

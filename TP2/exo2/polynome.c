@@ -12,6 +12,7 @@ int main(void){
    // on instance le polynome derivee
    polynome q ;
    q=Calcul_derive(poly, q );
+   printf("dérivée du polynome\n") ;
     Affichage_polynome(q) ;
     free(q.Tab) ;
     
@@ -24,11 +25,13 @@ int main(void){
    poly_2=Creation_Polynome(poly_2,degree_2);
    poly_2=Saisir_Polynome(poly_2) ;
    Affichage_polynome(poly_2) ;
+   printf("somme des deux polynomes\n") ;
     s=Somme(poly,poly_2,s );
     Affichage_polynome(s) ;
    
     //produit de deux polynomes
      s=Produit(poly,poly_2,s );
+     printf("produit des deux  polynomes\n") ;
     Affichage_polynome(s) ;
    free(s.Tab) ;
     
