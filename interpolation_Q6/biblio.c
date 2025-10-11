@@ -1,6 +1,5 @@
 #include "biblio.h"
 
-
 void echantillon_regulier(double min, double max, int n, double * echantillon){
     //définir le pas "h"
     double pas = (max - min) / n;
@@ -41,12 +40,13 @@ FILE *gp = popen("gnuplot -persist", "w");
        fprintf(gp,"%lf %lf\n", x,y);
         }
         fclose(data) ; // on ferme le fichier 
+        }
     fprintf(gp, "e\n");  // end of data
     fflush(gp);
     pclose(gp);
 }
 }
-}
+
 
 
 void calcul_f(int m,int n, double *y,double *x){
