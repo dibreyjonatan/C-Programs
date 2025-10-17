@@ -24,13 +24,19 @@
 //so you can use typedef before the existence of the complexe
 
 typedef struct complexe complexe ; 
+
+// je peux faire des prototypes des autres fonctions en utilisant complexe grace à la ligne 26
+// si je veux definir la fonction sans prototype, je dois le faire après la definition de complexe 
+static float get_real(complexe z );
+static float get_img(complexe z ) ; 
+
 // define the structure complexe 
 struct complexe{
 float real ;
     float img ; 
     float (*module)(complexe z) ;
     float (*phase)(complexe z) ;
-
+    float (*attributs[2])(complexe z) ; // this an array of pointer function, it accepts functions of type float name_functions(complexe z ) ;
 };
 //by using static the functions used here cannot be used in another file
 static float calcul_module(complexe z ){
@@ -71,13 +77,26 @@ int main(){
       z.img=1 ;
       z.module=calcul_module ;  //passing address of the functions to .module pointer in complexe 
       z.phase=calcul_phase ;
-      
+      z.attributs[0]=get_real; 
+      z.attributs[1]=get_img ;
+
       //methode 2 
      // complexe z ={ .real=1 , .img=1 , .module=calcul_module , .phase=calcul_phase } ;
-  
+       printf("partie real : %f \n",z.attributs[0](z)) ;
+       printf("partie imaginaire : %f \n",z.attributs[1](z)) ;
+       
        printf("module: %f\n",z.module(z) ) ;
         printf("phase: %f\n",z.phase(z) ) ;
        
  return 0 ; 
 }
 
+static float get_real(complexe z ){
+
+   return (z.real); 
+}
+
+static float get_img(complexe z ){
+
+   return (z.img); 
+}
