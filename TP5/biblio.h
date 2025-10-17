@@ -39,4 +39,5 @@ void calcul_echantillonnage(structEchantillonnage_fonction *p , structQuadrature
 double calcul_integral( structEchantillonnage_fonction p ) ;
 
 void AffichageGnuplot(structEchantillonnage_fonction Echantillonnage_fonction) ;
+void liberer_memoire_Ench_fonction(structEchantillonnage_fonction p) ;
 #endif

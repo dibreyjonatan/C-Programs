@@ -6,10 +6,9 @@ structSubdivision* subdivision_intervalle(double a, double b, int n){
      sub->nombre = n; // (*sub).nombre = n
     
     sub->tabIntervalle = malloc(n * sizeof(structIntervalle));
-
     double longueur = (b - a) / n;
 
-    // CORRECTION : calcul correct des intervalles
+    //calcul des intervalles
     for(int i = 0; i < n; i++) {
         sub->tabIntervalle[i].debut = a + i * longueur;
         sub->tabIntervalle[i].fin = a + (i + 1) * longueur;
@@ -18,7 +17,7 @@ structSubdivision* subdivision_intervalle(double a, double b, int n){
 }
 
 void afficher_subdivision(structSubdivision* sub){
-    // SUPPRIMER cette ligne : Subdivision *sub; <- déjà en paramètre !
+
     printf("Subdivision avec %d intervalles:\n", sub->nombre);
 
     for (int i = 0; i < sub->nombre; i++) {
@@ -65,7 +64,7 @@ void lecture_fichier( structQuadrature *p, char* nom_fich ) {
 void liberer_memoire_quad(structQuadrature* q){
     free(q->tabOmega);
     free(q->tabZeta);
-    free(q);
+    //free(q);
 }
 double CalculFonction(double x) {
 	return exp(-x) ; //on met la fonction constante pour tester
@@ -95,6 +94,8 @@ void calcul_echantillonnage(structEchantillonnage_fonction *p , structQuadrature
 	  }
 	  printf("\n") ;
 	}
+	
+	 
 	
 }
 double calcul_integral( structEchantillonnage_fonction p ) {
@@ -130,4 +131,10 @@ FILE *approx=fopen("courbe_integration_boxes.dat","w") ;
 fclose(reel) ;
 fclose(approx) ;
 
+}
+void liberer_memoire_Ench_fonction(structEchantillonnage_fonction p) {
+     for(int i=0 ; i < p.Quadrature_Echantillonnage.taille ; i++)
+         free( p.matriceFonctionEchantillonnee[i]) ;
+         free( p.matriceFonctionEchantillonnee) ; 
+       
 }
