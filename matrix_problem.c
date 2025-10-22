@@ -68,6 +68,25 @@ void Inverser_matrice(int taille, float ** matrice, float ** matrice_inv){
    matrice_inv=IdentityMat(taille,matrice_inv);
    printf("\nLa matrice identitaire est :\n");
    Afficher_matrice(taille, matrice_inv);
+   
+    // Pour reduire les 3 boucles du code en dessous en 2 boucles
+	// ceci peremt d'optimiser le code 
+	
+   float var, pivot; int j=0 ;
+   for(int k=0 ; k<=taille-2 ; k++){ 
+	   pivot=matrice[k][k] ; //le pivot c'est les elements de la diagonal sauf le dernier d'où taille-2
+	   for(int i=k+1 ; i<taille ; i++){    //on affecte les lignes en dessous des lignes pivot d'où k+1 à n-1 
+		   var= matrice[i][j] ;  
+			 matrice[i][j]+=(-1*pivot)*var ; // on met les zéros sur les lignes en dessous
+			 
+			 matrice_inv[i][j]+=(-1*pivot)*var ; // on fait pareil sur la matrice inverse 
+	   }
+	   j+=1 ; 
+	   
+	   
+   }
+   
+   /*
    for (int k=0 ; k<taille ; k++){
     for(int i=1; i<taille; i++){
         for(int j=0 ; j<taille; j++){
@@ -79,6 +98,7 @@ void Inverser_matrice(int taille, float ** matrice, float ** matrice_inv){
     }
     }
 }
+*/
 
     // cette ligne a été ajouté pour que le resultat concorde avec la pratique
      for(int i=0 ; i<taille ; i++){
