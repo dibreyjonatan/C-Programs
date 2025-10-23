@@ -23,7 +23,10 @@ int main(){
    // else you'll violate it 
     vector v ; 
     v.sym='A' ;
-    //v.pos_xyz est equivalent en p de *p 
+    // pour acceder à un champ de la structure on utilise . quand on travaille avec des varaiables
+    // pour acceder à un champ de la structure quand on travaille avec les pointeur on utilise ->
+    //v.pos_xyz est equivalent à p (de *p ) pour pouvoir acceder à la structure space, car
+    // space a été declaré comme pointeur dans la structure vector
     v.pos_xyz=malloc(sizeof(space)) ;
     v.pos_xyz->pos_xy=malloc(sizeof(position)) ;
    v.pos_xyz->z=1 ;
